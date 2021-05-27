@@ -10,6 +10,8 @@
 		8F0E11C1265FD7AC00D625F7 /* EssentialFeedLoader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0E11B7265FD7AB00D625F7 /* EssentialFeedLoader.framework */; };
 		8F0E11C6265FD7AC00D625F7 /* EssentialFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E11C5265FD7AC00D625F7 /* EssentialFeedLoaderTests.swift */; };
 		8F0E11C8265FD7AC00D625F7 /* EssentialFeedLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F0E11BA265FD7AB00D625F7 /* EssentialFeedLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8F0E11D3265FD7F100D625F7 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E11D1265FD7F100D625F7 /* FeedItem.swift */; };
+		8F0E11D4265FD7F100D625F7 /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E11D2265FD7F100D625F7 /* FeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		8F0E11C0265FD7AC00D625F7 /* EssentialFeedLoaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedLoaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0E11C5265FD7AC00D625F7 /* EssentialFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedLoaderTests.swift; sourceTree = "<group>"; };
 		8F0E11C7265FD7AC00D625F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F0E11D1265FD7F100D625F7 /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		8F0E11D2265FD7F100D625F7 /* FeedLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		8F0E11B9265FD7AB00D625F7 /* EssentialFeedLoader */ = {
 			isa = PBXGroup;
 			children = (
+				8F0E11D5265FD81B00D625F7 /* Feed Feature */,
 				8F0E11BA265FD7AB00D625F7 /* EssentialFeedLoader.h */,
 				8F0E11BB265FD7AB00D625F7 /* Info.plist */,
 			);
@@ -84,6 +89,15 @@
 				8F0E11C7265FD7AC00D625F7 /* Info.plist */,
 			);
 			path = EssentialFeedLoaderTests;
+			sourceTree = "<group>";
+		};
+		8F0E11D5265FD81B00D625F7 /* Feed Feature */ = {
+			isa = PBXGroup;
+			children = (
+				8F0E11D1265FD7F100D625F7 /* FeedItem.swift */,
+				8F0E11D2265FD7F100D625F7 /* FeedLoader.swift */,
+			);
+			path = "Feed Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +161,7 @@
 				TargetAttributes = {
 					8F0E11B6265FD7AB00D625F7 = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 					};
 					8F0E11BF265FD7AC00D625F7 = {
 						CreatedOnToolsVersion = 12.5;
@@ -194,6 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F0E11D4265FD7F100D625F7 /* FeedLoader.swift in Sources */,
+				8F0E11D3265FD7F100D625F7 /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +357,7 @@
 		8F0E11CC265FD7AC00D625F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -356,6 +374,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.monash.www.EssentialFeedLoader;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -363,6 +382,7 @@
 		8F0E11CD265FD7AC00D625F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -386,6 +406,7 @@
 		8F0E11CF265FD7AC00D625F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = EssentialFeedLoaderTests/Info.plist;
@@ -403,6 +424,7 @@
 		8F0E11D0265FD7AC00D625F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = EssentialFeedLoaderTests/Info.plist;
