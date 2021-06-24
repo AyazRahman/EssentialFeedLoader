@@ -6,7 +6,7 @@
 //
 
 
-public final class RemoteFeedLoader {
+public final class RemoteFeedLoader: FeedLoader {
     let url: URL
     let client: HTTPClient
     
