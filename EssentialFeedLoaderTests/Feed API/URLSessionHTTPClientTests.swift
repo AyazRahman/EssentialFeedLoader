@@ -51,31 +51,31 @@ class URLSessionHTTPClientTests: XCTestCase {
         URLProtocolStub.stopInterceptingRequests()
     }
     
-//    Not Needed anymore
-//    func test_getFromURL_createsDataTaskWithURL() {
-//        let url = URL(string: "http://any-url.com")!
-//        let session = URLSessionSpy()
-//        let sut = URLSessionHTTPClient(session: session)
-//
-//
-//        sut.get(from: url)
-//
-//        XCTAssertEqual(session.receivedURLS, [url])
-//    }
+    //    Not Needed anymore
+    //    func test_getFromURL_createsDataTaskWithURL() {
+    //        let url = URL(string: "http://any-url.com")!
+    //        let session = URLSessionSpy()
+    //        let sut = URLSessionHTTPClient(session: session)
+    //
+    //
+    //        sut.get(from: url)
+    //
+    //        XCTAssertEqual(session.receivedURLS, [url])
+    //    }
     
-//    Task not needed anymore
-//    func test_getFromURL_resumesDataTaskWithURL() {
-//            let url = URL(string: "http://any-url.com")!
-//            let session = HTTPSessionSpy()
-//
-//            session.stub(url: url, task: task)
-//
-//            let sut = URLSessionHTTPClient()
-//
-//            sut.get(from: url) { _ in }
-//
-//            XCTAssertEqual(task.resumeCallCount, 1)
-//        }
+    //    Task not needed anymore
+    //    func test_getFromURL_resumesDataTaskWithURL() {
+    //            let url = URL(string: "http://any-url.com")!
+    //            let session = HTTPSessionSpy()
+    //
+    //            session.stub(url: url, task: task)
+    //
+    //            let sut = URLSessionHTTPClient()
+    //
+    //            sut.get(from: url) { _ in }
+    //
+    //            XCTAssertEqual(task.resumeCallCount, 1)
+    //        }
     
     func test_getFromURL_performGETRequestWithURL(){
         
@@ -95,7 +95,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     }
     
     func test_getFromURL_failsOnRequestError(){
-       
+        
         let requestError = NSError(domain: "any error", code: 1)
         let receivedError = resultErrorFor(data: nil, response: nil, error: requestError) as NSError?
         
@@ -104,8 +104,23 @@ class URLSessionHTTPClientTests: XCTestCase {
         
     }
     
-    func test_getFromURL_failsOnAllNilValues(){
-       XCTAssertNotNil(resultErrorFor(data: nil, response: nil, error: nil))
+    func test_getFromURL_failsOnAllInvalidRepresentationCases(){
+        let anyData = Data("any data".utf8)
+        let anyError = NSError(domain: "any Error", code: 0)
+        let nonHTTPURLResponse = URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
+        let anyHTTPURLResponse = HTTPURLResponse(url: anyURL(), statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        XCTAssertNotNil(resultErrorFor(data: nil, response: nil, error: nil))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPURLResponse, error: nil))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: anyHTTPURLResponse, error: nil))
+        XCTAssertNotNil(resultErrorFor(data: anyData, response: nil, error: nil))
+        XCTAssertNotNil(resultErrorFor(data: anyData, response: nil, error: anyError))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPURLResponse, error: anyError))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: anyHTTPURLResponse, error: anyError))
+        XCTAssertNotNil(resultErrorFor(data: anyData, response: nonHTTPURLResponse, error: anyError))
+        XCTAssertNotNil(resultErrorFor(data: anyData, response: anyHTTPURLResponse, error: anyError))
+        XCTAssertNotNil(resultErrorFor(data: anyData, response: nonHTTPURLResponse, error: nil))
+        
     }
     
     // MARK: - Helpers
@@ -170,17 +185,17 @@ class URLSessionHTTPClientTests: XCTestCase {
             requestObserver = nil
         }
         
-//        Not needed anymore
-//        func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> HTTPSessionTask {
-//            //receivedURLS.append(url)
-//            //return stubs[url]?.task ?? FakeURLSessionDataTask()
-//
-//            guard let stub = stubs[url] else {
-//                fatalError("Could not find stub for \(url)")
-//            }
-//            completionHandler(nil, nil, stub.error)
-//            return stub.task
-//        }
+        //        Not needed anymore
+        //        func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> HTTPSessionTask {
+        //            //receivedURLS.append(url)
+        //            //return stubs[url]?.task ?? FakeURLSessionDataTask()
+        //
+        //            guard let stub = stubs[url] else {
+        //                fatalError("Could not find stub for \(url)")
+        //            }
+        //            completionHandler(nil, nil, stub.error)
+        //            return stub.task
+        //        }
         
         
         
@@ -213,18 +228,18 @@ class URLSessionHTTPClientTests: XCTestCase {
     }
     
     // Not Needed anymore
-//    private class FakeURLSessionDataTask: HTTPSessionTask{
-//        func resume() {
-//
-//        }
-//    }
-//
-//    private class URLSessionDataTaskSpy: HTTPSessionTask{
-//        var resumeCallCount = 0
-//
-//        func resume() {
-//            resumeCallCount += 1
-//        }
-//    }
-
+    //    private class FakeURLSessionDataTask: HTTPSessionTask{
+    //        func resume() {
+    //
+    //        }
+    //    }
+    //
+    //    private class URLSessionDataTaskSpy: HTTPSessionTask{
+    //        var resumeCallCount = 0
+    //
+    //        func resume() {
+    //            resumeCallCount += 1
+    //        }
+    //    }
+    
 }
